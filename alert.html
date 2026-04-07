@@ -1,0 +1,274 @@
+<!-- Driver Alert Interface -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LIFESAVER | Civilian Driver Alert Interface</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&amp;family=Space+Grotesk:wght@300;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#e5e2e1",
+                    "surface-dim": "#131313",
+                    "on-tertiary-fixed-variant": "#005312",
+                    "on-tertiary-container": "#daffd1",
+                    "primary-container": "#d32f2f",
+                    "surface-tint": "#ffb3ac",
+                    "surface": "#131313",
+                    "primary-fixed": "#ffdad6",
+                    "tertiary-container": "#298030",
+                    "outline": "#ab8985",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-surface-variant": "#e4beba",
+                    "surface-bright": "#393939",
+                    "surface-container-low": "#1c1b1b",
+                    "on-tertiary": "#00390a",
+                    "primary": "#ffb3ac",
+                    "on-secondary-fixed-variant": "#004786",
+                    "on-error-container": "#ffdad6",
+                    "secondary": "#a5c8ff",
+                    "background": "#131313",
+                    "primary-fixed-dim": "#ffb3ac",
+                    "outline-variant": "#5b403d",
+                    "on-background": "#e5e2e1",
+                    "on-secondary": "#00315f",
+                    "on-primary-fixed-variant": "#930010",
+                    "surface-container-highest": "#353534",
+                    "surface-variant": "#353534",
+                    "on-secondary-container": "#eaf0ff",
+                    "secondary-fixed": "#d4e3ff",
+                    "secondary-fixed-dim": "#a5c8ff",
+                    "inverse-primary": "#ba1a20",
+                    "surface-container": "#201f1f",
+                    "on-primary-fixed": "#410003",
+                    "on-primary": "#680008",
+                    "secondary-container": "#006ec9",
+                    "on-tertiary-fixed": "#002204",
+                    "on-primary-container": "#fff2f0",
+                    "inverse-on-surface": "#313030",
+                    "tertiary-fixed": "#9df898",
+                    "tertiary-fixed-dim": "#82db7e",
+                    "error-container": "#93000a",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed": "#001c3a",
+                    "tertiary": "#82db7e",
+                    "on-surface": "#e5e2e1",
+                    "surface-container-high": "#2a2a2a",
+                    "on-error": "#690005"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glow-alert {
+            box-shadow: 0 0 40px rgba(211, 47, 47, 0.4);
+        }
+        .glow-success {
+            box-shadow: 0 0 15px rgba(41, 128, 48, 0.3);
+        }
+        .map-gradient {
+            background: linear-gradient(to bottom, rgba(19, 19, 19, 0.8) 0%, rgba(19, 19, 19, 0) 20%, rgba(19, 19, 19, 0) 80%, rgba(19, 19, 19, 0.8) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body overflow-hidden h-screen select-none">
+<!-- Top Navigation Bar - Contextual for Active Duty -->
+<header class="fixed top-0 flex justify-between items-center w-full px-6 py-3 z-50 bg-[#131313]">
+<div class="flex items-center gap-4">
+<span class="font-headline font-black tracking-tighter text-xl text-[#FFB3AC] uppercase">LIFESAVER</span>
+<div class="h-4 w-[1px] bg-outline-variant/30"></div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary-fixed animate-pulse"></div>
+<span class="font-label text-[10px] tracking-widest uppercase text-on-tertiary-fixed-variant">System Online</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#FFB3AC] text-lg" data-icon="sensors">sensors</span>
+<span class="font-label text-[10px] tracking-widest uppercase text-[#E5E2E1]">V2V Connection: <span class="text-tertiary">ACTIVE</span></span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#FFB3AC] text-lg" data-icon="signal_cellular_alt">signal_cellular_alt</span>
+<span class="font-label text-[10px] tracking-widest uppercase text-[#E5E2E1]">GPS Strength: <span class="text-tertiary">HIGH</span></span>
+</div>
+<span class="material-symbols-outlined text-[#FFB3AC] cursor-pointer hover:bg-[#2A2A2A] transition-colors p-1 rounded" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col z-40 bg-[#1C1B1B] w-64 border-r border-[#5B403D]/15 shadow-2xl shadow-black/40">
+<div class="pt-20 px-6 pb-8">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-lg overflow-hidden border border-outline-variant/20">
+<img class="w-full h-full object-cover" data-alt="Portrait of a professional emergency vehicle operator in a dark uniform with tactical gear" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8zhCIspT6RbPkNOoJhdz6m610X89gcsbxQqCSTVgY0_jidc2CGTq0Bj45sWFQPpqjdb2LTtU8X7tCrTk9kYSgSoloH6PgeXBTmuy3Qgab-QjZH5JbWK-hggTYXluwPWUfRr1rC7RrAtsuxViBl7g4WshUlozKy8Mr86qL4ymxrUDtfg30OtO1SW1o2gO14xV7cDR7VtjExCs-OQzAfJQOmb5kRmxvXe4qzw-usoBcbjv2J19X1KMMMmNlTTnG2SetF1ZzcRacWQ"/>
+</div>
+<div>
+<p class="font-label text-xs font-bold text-[#FFB3AC] tracking-wide">OPERATOR 04</p>
+<p class="font-label text-[10px] text-[#E5E2E1]/60 tracking-tight">Active Duty - V2V Connected</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1 px-3">
+<div class="flex items-center gap-4 px-4 py-3 rounded bg-[#2A2A2A] text-[#FFB3AC] border-l-4 border-[#FFB3AC] transition-all duration-200 ease-in-out cursor-pointer">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label text-sm tracking-wide">Dashboard</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 rounded text-[#E5E2E1]/60 hover:bg-[#2A2A2A] hover:text-[#E5E2E1] transition-all duration-200 ease-in-out cursor-pointer">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label text-sm tracking-wide">Live Map</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 rounded text-[#E5E2E1]/60 hover:bg-[#2A2A2A] hover:text-[#E5E2E1] transition-all duration-200 ease-in-out cursor-pointer">
+<span class="material-symbols-outlined" data-icon="emergency_share">emergency_share</span>
+<span class="font-label text-sm tracking-wide">Dispatch</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 rounded text-[#E5E2E1]/60 hover:bg-[#2A2A2A] hover:text-[#E5E2E1] transition-all duration-200 ease-in-out cursor-pointer">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+<span class="font-label text-sm tracking-wide">Analytics</span>
+</div>
+<div class="flex items-center gap-4 px-4 py-3 rounded text-[#E5E2E1]/60 hover:bg-[#2A2A2A] hover:text-[#E5E2E1] transition-all duration-200 ease-in-out cursor-pointer">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label text-sm tracking-wide">Settings</span>
+</div>
+</div>
+<div class="mt-auto px-4 pb-8">
+<button class="w-full bg-primary-container text-on-primary-container font-label font-bold text-xs py-4 rounded-sm tracking-widest uppercase hover:opacity-90 active:scale-[0.98] transition-all">
+                DECLARE EMERGENCY
+            </button>
+<div class="mt-6 flex flex-col gap-3 px-2">
+<div class="flex items-center gap-3 text-[#E5E2E1]/40 hover:text-[#A5C8FF] cursor-pointer">
+<span class="material-symbols-outlined text-sm" data-icon="help">help</span>
+<span class="font-label text-[10px] tracking-widest uppercase">Support</span>
+</div>
+<div class="flex items-center gap-3 text-[#E5E2E1]/40 hover:text-[#A5C8FF] cursor-pointer">
+<span class="material-symbols-outlined text-sm" data-icon="history">history</span>
+<span class="font-label text-[10px] tracking-widest uppercase">Logs</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Tactical Display -->
+<main class="ml-64 h-full relative flex flex-col">
+<!-- High Contrast Background Map -->
+<div class="absolute inset-0 z-0 bg-[#0e0e0e]">
+<img class="w-full h-full object-cover opacity-40 grayscale" data-alt="Dark, high-contrast satellite view of urban streets at night with neon blue and grey highlights for roads" data-location="Chicago" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyzre0P1pmQ75xDUmlBcC4wb-sp7QHu632RcPLvc0CfR6hahgSKijQ86Kx-c_118vIT_Cgo2WyTddlgS0Am5ix0rQ0A4_dGTsp3dAKFVVW-Uiq6BR6m1S_8nCemPZdUcQ6czgNMOjKZytZYJcDMWWEppqLc3aMKqHW66mxSA0Po8kpp7fQ1-qN9C0S8BncOXbIDmwcGH_rhWfd9EdAoemIDYOYvUvW8WBMlyqyHQKF1ZzJN8S5tiQ_2QR-RWG1PWsu5EShAMdrkw"/>
+<div class="absolute inset-0 map-gradient"></div>
+</div>
+<!-- Critical Alert Layer -->
+<div class="relative z-10 flex-1 flex flex-col items-center justify-center p-12">
+<!-- Red Alert Banner -->
+<div class="w-full max-w-4xl bg-primary-container/90 backdrop-blur-xl glow-alert border-l-[12px] border-primary p-8 rounded-lg flex items-center justify-between mb-8">
+<div class="flex items-center gap-8">
+<div class="relative">
+<span class="material-symbols-outlined text-6xl text-on-primary-container" data-icon="medical_services" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<div class="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full animate-ping"></div>
+</div>
+<div>
+<h1 class="font-headline font-black text-4xl text-on-primary-container tracking-tighter leading-none mb-1 uppercase">AMBULANCE APPROACHING</h1>
+<p class="font-label font-bold text-xl text-on-primary-container/80 tracking-widest">DISTANCE: 500M • BEHIND YOU</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline font-black text-6xl text-on-primary-container tracking-tighter">0:14</div>
+<div class="font-label text-[10px] tracking-[0.2em] text-on-primary-container/60 uppercase">Est. Contact</div>
+</div>
+</div>
+<!-- Action Guidance (Asymmetric Layout) -->
+<div class="w-full max-w-5xl grid grid-cols-12 gap-6 items-end">
+<!-- Large Tactical Instruction -->
+<div class="col-span-8 flex flex-col gap-4">
+<div class="flex items-center gap-6 bg-surface-container-highest/80 backdrop-blur-md p-10 rounded-xl border border-outline-variant/30">
+<div class="flex flex-col gap-2">
+<span class="material-symbols-outlined text-[120px] text-tertiary leading-none" data-icon="east" style="font-variation-settings: 'FILL' 1;">east</span>
+<span class="material-symbols-outlined text-[120px] text-tertiary leading-none -mt-12" data-icon="east" style="font-variation-settings: 'FILL' 1;">east</span>
+</div>
+<div>
+<h2 class="font-headline font-black text-7xl text-on-surface tracking-tighter uppercase leading-[0.9]">MOVE TO THE RIGHT</h2>
+<p class="font-label text-xl text-secondary mt-4 uppercase tracking-widest font-bold">Clear the lane immediately</p>
+</div>
+</div>
+</div>
+<!-- Secondary Tactical Data -->
+<div class="col-span-4 flex flex-col gap-4">
+<!-- Amber Warning State -->
+<div class="bg-surface-container-high/90 backdrop-blur-sm p-6 rounded-lg border-l-4 border-primary">
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-primary" data-icon="warning">warning</span>
+<span class="font-label text-xs font-bold tracking-widest text-primary uppercase">Traffic Flow</span>
+</div>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">Heavy congestion detected 200m ahead on 5th Ave. Lane 1 &amp; 2 closed for emergency corridor.</p>
+</div>
+<div class="bg-surface-container-low/90 backdrop-blur-sm p-6 rounded-lg border border-outline-variant/10">
+<div class="flex justify-between items-center mb-4">
+<span class="font-label text-[10px] tracking-widest text-on-surface-variant uppercase">Vehicle Telemetry</span>
+<span class="font-label text-[10px] text-tertiary">SYNCED</span>
+</div>
+<div class="flex items-end justify-between">
+<div class="flex flex-col">
+<span class="font-headline font-black text-3xl text-on-surface">65</span>
+<span class="font-label text-[10px] tracking-widest text-on-surface-variant uppercase">KM/H</span>
+</div>
+<div class="h-12 w-24 flex items-end gap-1">
+<div class="w-2 h-[40%] bg-tertiary/20"></div>
+<div class="w-2 h-[60%] bg-tertiary/40"></div>
+<div class="w-2 h-[80%] bg-tertiary/60"></div>
+<div class="w-2 h-[100%] bg-tertiary glow-success"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- HUD Bottom Controls (Minimal Overlay) -->
+<div class="absolute bottom-12 right-12 z-20 flex gap-4">
+<button class="w-16 h-16 bg-surface-container-highest/80 backdrop-blur-md flex items-center justify-center rounded-full border border-outline-variant/30 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface" data-icon="volume_up">volume_up</span>
+</button>
+<button class="w-16 h-16 bg-surface-container-highest/80 backdrop-blur-md flex items-center justify-center rounded-full border border-outline-variant/30 hover:bg-surface-container-high transition-colors text-primary">
+<span class="material-symbols-outlined" data-icon="report" style="font-variation-settings: 'FILL' 1;">report</span>
+</button>
+</div>
+</main>
+<!-- Mission Critical Footer -->
+<footer class="fixed bottom-0 left-64 right-0 z-50 bg-[#131313] py-4 border-t border-[#5B403D]/10 flex justify-between px-12 items-center">
+<div class="flex items-center gap-8">
+<span class="font-label text-[10px] tracking-widest uppercase text-[#E5E2E1]/40">© 2024 V2V INTELLIGENT SYSTEMS. MISSION CRITICAL AVAILABILITY.</span>
+<div class="flex gap-4">
+<a class="font-label text-[10px] tracking-widest uppercase text-[#E5E2E1]/40 hover:text-[#A5C8FF]" href="#">Privacy</a>
+<a class="font-label text-[10px] tracking-widest uppercase text-[#E5E2E1]/40 hover:text-[#A5C8FF]" href="#">Protocols</a>
+<a class="font-label text-[10px] tracking-widest uppercase text-[#E5E2E1]/40 hover:text-[#A5C8FF]" href="#">Contact</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-end">
+<span class="font-label text-[9px] tracking-[0.2em] text-[#E5E2E1]/40 uppercase">Lat/Long</span>
+<span class="font-label text-xs text-secondary">41.8781° N, 87.6298° W</span>
+</div>
+<div class="w-[1px] h-6 bg-outline-variant/20"></div>
+<div class="flex flex-col items-end">
+<span class="font-label text-[9px] tracking-[0.2em] text-[#E5E2E1]/40 uppercase">V2V ID</span>
+<span class="font-label text-xs text-secondary">LX-992-TX</span>
+</div>
+</div>
+</footer>
+</body></html>

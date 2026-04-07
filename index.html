@@ -1,0 +1,307 @@
+<!-- System Overview Landing Page -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LIFESAVER | Intelligent V2V Connectivity</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            background-color: #131313;
+            color: #E5E2E1;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-card {
+            background: rgba(42, 42, 42, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#e5e2e1",
+                        "surface-dim": "#131313",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "on-tertiary-container": "#daffd1",
+                        "primary-container": "#d32f2f",
+                        "surface-tint": "#ffb3ac",
+                        "surface": "#131313",
+                        "primary-fixed": "#ffdad6",
+                        "tertiary-container": "#298030",
+                        "outline": "#ab8985",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-surface-variant": "#e4beba",
+                        "surface-bright": "#393939",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary": "#00390a",
+                        "primary": "#ffb3ac",
+                        "on-secondary-fixed-variant": "#004786",
+                        "on-error-container": "#ffdad6",
+                        "secondary": "#a5c8ff",
+                        "background": "#131313",
+                        "primary-fixed-dim": "#ffb3ac",
+                        "outline-variant": "#5b403d",
+                        "on-background": "#e5e2e1",
+                        "on-secondary": "#00315f",
+                        "on-primary-fixed-variant": "#930010",
+                        "surface-container-highest": "#353534",
+                        "surface-variant": "#353534",
+                        "on-secondary-container": "#eaf0ff",
+                        "secondary-fixed": "#d4e3ff",
+                        "secondary-fixed-dim": "#a5c8ff",
+                        "inverse-primary": "#ba1a20",
+                        "surface-container": "#201f1f",
+                        "on-primary-fixed": "#410003",
+                        "on-primary": "#680008",
+                        "secondary-container": "#006ec9",
+                        "on-tertiary-fixed": "#002204",
+                        "on-primary-container": "#fff2f0",
+                        "inverse-on-surface": "#313030",
+                        "tertiary-fixed": "#9df898",
+                        "tertiary-fixed-dim": "#82db7e",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#001c3a",
+                        "tertiary": "#82db7e",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 flex justify-between items-center w-full px-6 py-3 z-50 bg-[#131313] shadow-none">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black tracking-tighter text-[#FFB3AC] dark:text-[#FFB3AC] font-['Inter'] uppercase">LIFESAVER</span>
+<div class="hidden md:flex gap-6">
+<a class="font-['Inter'] font-bold tracking-tighter uppercase text-[#FFB3AC] hover:bg-[#2A2A2A] transition-colors px-3 py-1 rounded-sm" href="#">Overview</a>
+<a class="font-['Inter'] font-bold tracking-tighter uppercase text-[#E5E2E1] hover:bg-[#2A2A2A] transition-colors px-3 py-1 rounded-sm" href="#">Technology</a>
+<a class="font-['Inter'] font-bold tracking-tighter uppercase text-[#E5E2E1] hover:bg-[#2A2A2A] transition-colors px-3 py-1 rounded-sm" href="#">Network</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center bg-[#1C1B1B] rounded-sm px-3 py-1.5 border border-[#5B403D]/20">
+<span class="material-symbols-outlined text-[#FFB3AC] text-sm mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none text-[10px] font-label tracking-widest focus:ring-0 text-[#E5E2E1] w-32 placeholder:text-[#E5E2E1]/30" placeholder="SYSTEM SEARCH" type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-[#FFB3AC] hover:bg-[#2A2A2A] transition-colors rounded-sm">
+<span class="material-symbols-outlined" data-icon="sensors">sensors</span>
+</button>
+<button class="p-2 text-[#FFB3AC] hover:bg-[#2A2A2A] transition-colors rounded-sm">
+<span class="material-symbols-outlined" data-icon="signal_cellular_alt">signal_cellular_alt</span>
+</button>
+<button class="p-2 text-[#FFB3AC] hover:bg-[#2A2A2A] transition-colors rounded-sm">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex items-center overflow-hidden bg-surface">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-30 grayscale contrast-125" data-alt="futuristic digital server room with neon red and blue diagnostic lights and high-tech connectivity nodes in a dark atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDifP00_5PqIJJmJDYjLiSCj-A5NbwSqvQV0kEjfqac_1V6ahAlPAN21_4B1ct0pn5UJRY3xmHVGDW_r08vE7Goy0EVCVsjxJ4bhHwIaAoE7-Xtuc90TfasQn2kPTecqiJNnK8bKNhhn8WB9gTweDL5CxJ7deZcczAqshneIimU65CdsoD3tHgTWkGggJWPMtMwkdK7-Pr8U64_u-C0ahqCBwFjdAkbb6R6jiXR1gwavNFc-gFFzsIMZoyuDr2CAXGNe27-b41h_Q"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-transparent"></div>
+</div>
+<div class="container mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8">
+<div class="md:col-span-8 flex flex-col justify-center">
+<div class="inline-flex items-center gap-2 mb-6">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_rgba(255,179,172,0.6)]"></span>
+<span class="font-label text-xs tracking-[0.3em] uppercase text-secondary">Operational Readiness V2.4</span>
+</div>
+<h1 class="font-headline font-black text-6xl md:text-8xl tracking-tighter leading-[0.9] text-on-surface mb-8 uppercase">
+                        Saving Lives with <br/>
+<span class="text-primary italic">Intelligent</span> <br/>
+                        V2V Connectivity
+                    </h1>
+<p class="font-body text-xl text-on-surface-variant max-w-xl leading-relaxed mb-10">
+                        The next generation of emergency response. Real-time data synchronization between emergency vehicles, infrastructure, and central command for a zero-delay mission ecosystem.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary-container text-on-primary-container px-8 py-4 rounded-lg font-label font-bold tracking-widest text-sm flex items-center gap-3 hover:opacity-90 transition-all active:scale-95">
+                            OPERATOR LOGIN
+                            <span class="material-symbols-outlined text-lg" data-icon="login">login</span>
+</button>
+<button class="border border-outline-variant text-on-surface px-8 py-4 rounded-lg font-label font-bold tracking-widest text-sm flex items-center gap-3 hover:bg-surface-container-high transition-all active:scale-95">
+                            STAFF PORTAL
+                            <span class="material-symbols-outlined text-lg" data-icon="admin_panel_settings">admin_panel_settings</span>
+</button>
+</div>
+</div>
+<div class="md:col-span-4 hidden lg:flex items-center justify-end">
+<div class="w-full aspect-[3/4] bg-surface-container-low p-1 rounded-xl relative">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent pointer-events-none"></div>
+<img class="w-full h-full object-cover rounded-lg opacity-80 mix-blend-screen" data-alt="high-tech digital heads-up display showing emergency vehicle telemetry and topographic city map in tactical red tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYNsBzjEzmlbPUWFETXM2urLudWls7amFZYUoIKyHwZO2Vs1KBAy_qgPFkLvErpTpNcThuv24_diKW08x80qJlDS3PNBLhgZLFCCHCrscoRqFziyfa38_J9otrqDznenB2os006RYARB6gbqexmCxWtQ0uj-qBOmz_EELwiAYU4wAUtcN54iZzCv1uJiw443oeBH3rP1CuMQLxEub90c7Ive2p-PgSuLySUS6A2etWEz_Df4aSNhNpj-8tswna3BUgVjjWR8ucOw"/>
+<div class="absolute bottom-6 left-6 right-6 glass-card p-4 rounded-lg border border-outline-variant/20">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label text-[10px] tracking-widest text-secondary uppercase">Network Latency</span>
+<span class="font-label text-[10px] text-tertiary">STABLE 12ms</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-[85%] h-full bg-tertiary"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+<div class="max-w-2xl">
+<h2 class="font-label text-xs tracking-[0.4em] text-primary uppercase mb-4">Core Capabilities</h2>
+<h3 class="font-headline font-extrabold text-4xl md:text-5xl tracking-tighter uppercase leading-none">The Tactical Command <br/>Edge Interface</h3>
+</div>
+<p class="font-body text-on-surface-variant max-w-xs text-sm leading-relaxed">
+                        Engineered for zero-failure performance. Our proprietary V2V stack eliminates communication silos.
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+<!-- Real-time Alerts -->
+<div class="md:col-span-7 bg-surface-container-low p-8 rounded-xl flex flex-col justify-between group overflow-hidden relative min-h-[400px]">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="emergency">emergency</span>
+<h4 class="font-headline font-bold text-3xl tracking-tight uppercase mb-4">Real-time Alerts</h4>
+<p class="font-body text-on-surface-variant max-w-sm mb-8">
+                                Instant synchronization of emergency status across the entire network. Every millisecond saved is a life protected.
+                            </p>
+</div>
+<div class="relative z-10 flex gap-4">
+<div class="bg-surface-container-high px-4 py-2 rounded-lg border border-outline-variant/30 font-label text-[10px] tracking-widest uppercase">Response Time: -40%</div>
+<div class="bg-surface-container-high px-4 py-2 rounded-lg border border-outline-variant/30 font-label text-[10px] tracking-widest uppercase">Sync: 1ms</div>
+</div>
+<img class="absolute right-0 bottom-0 w-1/2 h-full object-cover opacity-20 grayscale group-hover:opacity-40 transition-all duration-700 pointer-events-none" data-alt="dramatic night scene of ambulance siren lights reflecting on wet city streets with motion blur and intense red glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwlZqeaCGI5Tm3Ajs7Uw2DegnikM5zCkTjkUE4400rAut63FgKMPD_NNZzN3krvn9SD7mk1p9U-E2lBBkH_PfnSehO6mngjsL504qhK9RH4kbDHGihyXur-CaYqlsV33V5vh4vvcfO1bAEqeL2RmUD62IASb_ikLDW_E-WBWXfmOfggwVX6zfG8q3v4peHcxAPZxz4zw3CQEKlxS7Dc7JHHfTRfcuWBRJVxZW5TDTf_kjf_SykUU-gi2V6ieDiTmvOEdM54Uc6UQ"/>
+</div>
+<!-- Small Stat Card -->
+<div class="md:col-span-5 bg-primary-container p-8 rounded-xl flex flex-col justify-center items-center text-center relative overflow-hidden">
+<div class="absolute inset-0 opacity-10">
+<div class="w-full h-full border-[20px] border-on-primary-container/20 rounded-full scale-150"></div>
+</div>
+<span class="font-headline font-black text-7xl tracking-tighter text-on-primary-container mb-2">99.9%</span>
+<span class="font-label tracking-[0.2em] uppercase text-on-primary-container/80 text-xs">Network Reliability</span>
+</div>
+<!-- Route Optimization -->
+<div class="md:col-span-4 bg-surface-container-high p-8 rounded-xl relative overflow-hidden group min-h-[350px]">
+<span class="material-symbols-outlined text-secondary text-4xl mb-6" data-icon="route">route</span>
+<h4 class="font-headline font-bold text-2xl tracking-tight uppercase mb-4">Route <br/>Optimization</h4>
+<p class="font-body text-on-surface-variant text-sm mb-6">
+                            AI-driven pathfinding that manipulates smart infrastructure to clear intersections in advance.
+                        </p>
+<div class="absolute bottom-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform">
+<span class="material-symbols-outlined text-secondary/20 text-9xl" data-icon="navigation">navigation</span>
+</div>
+</div>
+<!-- Centralized Management -->
+<div class="md:col-span-8 bg-surface-container-low p-8 rounded-xl flex flex-col md:flex-row gap-8 relative overflow-hidden min-h-[350px]">
+<div class="flex-1">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-6" data-icon="hub">hub</span>
+<h4 class="font-headline font-bold text-2xl tracking-tight uppercase mb-4">Centralized <br/>Management</h4>
+<p class="font-body text-on-surface-variant text-sm mb-6">
+                                A unified dashboard for fleet commanders. Monitor thousands of active responders with granular telemetry and direct override capabilities.
+                            </p>
+<button class="text-tertiary font-label text-xs tracking-widest uppercase flex items-center gap-2 hover:gap-4 transition-all">
+                                EXPLORE ENGINE
+                                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="flex-1 bg-surface-container-lowest rounded-lg border border-outline-variant/10 p-4 relative h-48 md:h-full">
+<img class="w-full h-full object-cover rounded opacity-40 grayscale mix-blend-screen" data-alt="abstract visualization of a global data map with glowing connecting points and fluid data streams on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWQ_i6rpnYNOSSHe4ttWcsNJKPQYDZoK7kkRrNUJsLIXtRdQXKo4XsOlM7n7Qqo8jhUvczFwBDLD5jIXHWFRbLIho01S19j3X9upZMsMZ-LSIK53F_ymjJTku86bk1teO-C_vyC-CV08rZg9oY6QA8AvsIsMiA_SMUUCU4c86y9JFX7Kll1Ms_HwDQ_VVpYyQrOW2z_oPBfHDXO0_g62rN4szt9RAi88n3WjL5xAWCQZk81BeaM0rboU5ycbxW4nXebbYQ5cUw3Q"/>
+<div class="absolute top-4 left-4 bg-tertiary-container/20 text-tertiary-fixed text-[8px] font-label px-2 py-1 rounded">LIVE FEED</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 bg-surface">
+<div class="container mx-auto px-6">
+<div class="bg-[#1C1B1B] border-r border-[#5B403D]/15 rounded-2xl overflow-hidden shadow-2xl shadow-black/40 flex flex-col md:flex-row">
+<div class="p-12 md:w-1/2">
+<h2 class="font-headline font-black text-5xl tracking-tighter uppercase mb-6 leading-tight">
+                            Command the <br/><span class="text-secondary">Network</span>
+</h2>
+<p class="font-body text-on-surface-variant mb-10 max-w-sm">
+                            Access your operator workstation or manage staff credentials through our secure portal endpoints.
+                        </p>
+<div class="flex flex-col gap-4">
+<a class="flex items-center justify-between p-6 bg-surface-container-high hover:bg-primary-container/10 border border-outline-variant/20 rounded-lg group transition-all" href="#">
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="terminal">terminal</span>
+<div>
+<div class="font-label text-xs tracking-widest text-primary uppercase">Active Ops</div>
+<div class="font-headline font-bold text-xl uppercase">Operator Login</div>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-6 bg-surface-container-high hover:bg-secondary-container/10 border border-outline-variant/20 rounded-lg group transition-all" href="#">
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="group">group</span>
+<div>
+<div class="font-label text-xs tracking-widest text-secondary uppercase">Admin Cluster</div>
+<div class="font-headline font-bold text-xl uppercase">Staff Portal</div>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</div>
+<div class="md:w-1/2 relative min-h-[300px]">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="extreme close up of an engineer working with fiber optic cables in a dimly lit server room with teal and red lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgM-wEvWh4tCndiEtMiIh0ZZjV3wfgheRTna-iF7K-8WC-fcEUXtil7dodfMNu_U6NvalEQj_txbzr0ggHVI_jaCRMvB3ZrT1BX5Cu_IzLY-UflK2HOnrTSte5oTqnUsJ3a7W_9M0MPvL5RSPlqFkxUjADGTWwGWy_Q9OimhiOh5JxDIHBeODZoMnqMBut_mQin9kSQEzSwgSNoNB2fKMZqSv_Ov4BXznGQvT1laooyQtQyA0hL4_2FcEwOcTqj0Y_wO31872P8g"/>
+<div class="absolute inset-0 bg-gradient-to-l from-transparent to-[#1C1B1B]"></div>
+<div class="absolute bottom-8 right-8 text-right">
+<div class="font-label text-[10px] tracking-[0.5em] text-on-surface/40 uppercase mb-2">Hardware Spec</div>
+<div class="font-label text-sm text-secondary">V2V-INTEGRATED_ANTENNA_ARRAY_MK_IX</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full flex flex-col md:flex-row justify-between px-12 py-8 border-t border-[#5B403D]/10 bg-[#131313] items-center gap-6">
+<div class="flex flex-col md:flex-row items-center gap-8">
+<span class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase text-[#E5E2E1]/40">© 2024 V2V INTELLIGENT SYSTEMS. MISSION CRITICAL AVAILABILITY.</span>
+</div>
+<div class="flex gap-8">
+<a class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase text-[#E5E2E1]/40 hover:text-[#A5C8FF] transition-colors" href="#">Privacy</a>
+<a class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase text-[#E5E2E1]/40 hover:text-[#A5C8FF] transition-colors" href="#">Protocols</a>
+<a class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase text-[#E5E2E1]/40 hover:text-[#A5C8FF] transition-colors" href="#">Contact</a>
+</div>
+</footer>
+</body></html>
