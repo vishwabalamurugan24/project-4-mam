@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LIFESAVER | Analytics</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface": "#131313", "primary": "#ffb3ac", "primary-container": "#d32f2f", "background": "#131313", "on-background": "#e5e2e1", "secondary": "#a5c8ff", "tertiary": "#82db7e" }, fontFamily: { headline: ["Inter"], body: ["Inter"], label: ["Space Grotesk"] }}}}
+    </script>
+</head>
+<body class="bg-background text-on-background font-body h-screen flex overflow-hidden">
+    <!-- Sidebar -->
+    <nav class="w-64 bg-[#1C1B1B] border-r border-white/10 flex flex-col h-full shrink-0 z-20">
+        <div class="p-6">
+            <h1 class="font-headline font-black text-2xl text-primary tracking-tighter uppercase">LIFESAVER</h1>
+            <p class="font-label text-[10px] text-on-background/50 tracking-widest uppercase">System Menu</p>
+        </div>
+        <div class="flex-1 overflow-y-auto px-4 py-2 flex flex-col gap-1">
+            <a href="index.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">home</span><span class="font-label text-xs uppercase tracking-widest">Home</span></a>
+            <a href="admin.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">admin_panel_settings</span><span class="font-label text-xs uppercase tracking-widest">Admin Control</span></a>
+            <a href="ambulance.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">medical_services</span><span class="font-label text-xs uppercase tracking-widest">Ambulance</span></a>
+            <a href="driver.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">directions_car</span><span class="font-label text-xs uppercase tracking-widest">Driver Alert</span></a>
+            <a href="tracking.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">map</span><span class="font-label text-xs uppercase tracking-widest">Live Tracking</span></a>
+            <a href="traffic.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">traffic</span><span class="font-label text-xs uppercase tracking-widest">Traffic Mgmt</span></a>
+            <a href="analytics.html" class="flex items-center gap-3 px-3 py-2 rounded bg-primary/10 text-primary border-l-2 border-primary transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">analytics</span><span class="font-label text-xs uppercase tracking-widest font-bold">Analytics</span></a>
+            <a href="settings.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">settings</span><span class="font-label text-xs uppercase tracking-widest">Settings</span></a>
+            <a href="contact.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">help</span><span class="font-label text-xs uppercase tracking-widest">Contact/Help</span></a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-8 bg-[#0A0A0A]">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="font-headline font-black text-3xl tracking-tight uppercase">Performance Analytics</h2>
+            <span id="refresh-btn" class="material-symbols-outlined cursor-pointer text-white/50 hover:text-white" onclick="fetchMetrics()">refresh</span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6 mb-8">
+            <div class="bg-[#1C1B1B] p-6 rounded-xl border border-white/5 flex flex-col justify-between shadow-lg">
+                <span class="font-label text-xs text-secondary uppercase tracking-widest">Avg Response Time</span>
+                <span id="metric-response" class="font-headline text-5xl font-black mt-2">-- <span class="text-xl text-white/50 font-normal">MIN</span></span>
+                <span class="text-tertiary text-xs mt-2 flex items-center gap-1"><span class="material-symbols-outlined text-xs">trending_down</span> 12% vs last month</span>
+            </div>
+            <div class="bg-[#1C1B1B] p-6 rounded-xl border border-white/5 flex flex-col justify-between shadow-lg">
+                <span class="font-label text-xs text-primary uppercase tracking-widest">Active Ambulances</span>
+                <span id="metric-corridors" class="font-headline text-5xl font-black mt-2">--</span>
+                <span class="text-white/50 text-xs mt-2 uppercase tracking-widest">System Wide En-Route</span>
+            </div>
+            <div class="bg-[#1C1B1B] p-6 rounded-xl border border-white/5 flex flex-col justify-between shadow-lg">
+                <span class="font-label text-xs text-tertiary uppercase tracking-widest">Total Monitored Nodes</span>
+                <span id="metric-nodes" class="font-headline text-5xl font-black mt-2">--</span>
+                <span class="text-tertiary text-xs mt-2 flex items-center gap-1"><span class="material-symbols-outlined text-xs">verified</span> V2V Efficiencies</span>
+            </div>
+        </div>
+
+        <div class="bg-[#1C1B1B] p-6 rounded-xl border border-white/5 shadow-lg h-96 flex flex-col justify-center items-center relative overflow-hidden group">
+            <!-- Simulated Graph Bar Effect -->
+            <div class="absolute inset-0 flex items-end justify-around px-12 opacity-20 pointer-events-none pb-12 pt-24 gap-2">
+                <div class="bg-secondary w-full h-[40%] rounded-t-sm"></div>
+                <div class="bg-secondary w-full h-[60%] rounded-t-sm"></div>
+                <div class="bg-secondary w-full h-[30%] rounded-t-sm"></div>
+                <div class="bg-secondary w-full h-[80%] rounded-t-sm animate-pulse shadow-[0_0_20px_#a5c8ff]"></div>
+                <div class="bg-tertiary w-full h-[50%] rounded-t-sm"></div>
+                <div class="bg-tertiary w-full h-[20%] rounded-t-sm"></div>
+                <div class="bg-tertiary w-full h-[90%] rounded-t-sm shadow-[0_0_20px_#82db7e]"></div>
+            </div>
+
+            <p class="font-label text-white/50 uppercase tracking-widest text-sm flex flex-col items-center gap-4 z-10 transition-opacity">
+                <span class="material-symbols-outlined text-5xl">ssid_chart</span>
+                Interactive Graph Component
+                <span class="text-[10px] text-white/30 lowercase normal-case tracking-normal">(ChartJS to be initialized here)</span>
+            </p>
+        </div>
+    </main>
+
+    <!-- Client-side Logic -->
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+
+        async function fetchMetrics() {
+            const icon = document.getElementById('refresh-btn');
+            const elResponse = document.getElementById('metric-response');
+            const elCorridors = document.getElementById('metric-corridors');
+            const elNodes = document.getElementById('metric-nodes');
+            
+            try {
+                icon.classList.add('animate-spin');
+                
+                const [ambRes, alertRes] = await Promise.all([
+                    fetch(`${API_URL}/ambulances`),
+                    fetch(`${API_URL}/alerts`)
+                ]);
+                
+                const ambulances = await ambRes.json();
+                const alerts = await alertRes.json();
+                
+                // Calculate dynamic stats
+                const activeUnits = ambulances.filter(a => a.status === 'En Route' || a.status === 'On Scene').length;
+                const totalNodes = ambulances.length * 1024 + Math.floor(Math.random() * 50); // Pseudo calculation
+
+                elResponse.innerHTML = `4.2 <span class="text-xl text-white/50 font-normal">MIN</span>`; // Mocked historic
+                elCorridors.innerHTML = `${activeUnits}`;
+                elNodes.innerHTML = `${totalNodes.toLocaleString()}`;
+
+            } catch (err) {
+                console.error(err);
+                elResponse.innerText = 'ERR';
+                elCorridors.innerText = 'ERR';
+                elNodes.innerText = 'ERR';
+            } finally {
+                icon.classList.remove('animate-spin');
+            }
+        }
+
+        // Fetch on load
+        fetchMetrics();
+        setInterval(fetchMetrics, 30000);
+    </script>
+</body>
+</html>

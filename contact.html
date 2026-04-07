@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LIFESAVER | Support</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface": "#131313", "primary": "#ffb3ac", "primary-container": "#d32f2f", "background": "#131313", "on-background": "#e5e2e1" }, fontFamily: { headline: ["Inter"], body: ["Inter"], label: ["Space Grotesk"] }}}}
+    </script>
+</head>
+<body class="bg-background text-on-background font-body h-screen flex overflow-hidden">
+    <!-- Sidebar -->
+    <nav class="w-64 bg-[#1C1B1B] border-r border-white/10 flex flex-col h-full shrink-0 z-20">
+        <div class="p-6">
+            <h1 class="font-headline font-black text-2xl text-primary tracking-tighter uppercase">LIFESAVER</h1>
+            <p class="font-label text-[10px] text-on-background/50 tracking-widest uppercase">System Menu</p>
+        </div>
+        <div class="flex-1 overflow-y-auto px-4 py-2 flex flex-col gap-1">
+            <a href="index.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">home</span><span class="font-label text-xs uppercase tracking-widest">Home</span></a>
+            <a href="contact.html" class="flex items-center gap-3 px-3 py-2 rounded bg-primary/10 text-primary border-l-2 border-primary transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">help</span><span class="font-label text-xs uppercase tracking-widest font-bold">Contact/Help</span></a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-8 bg-[#0A0A0A] flex justify-center">
+        <div class="max-w-2xl w-full flex flex-col gap-8 mt-12">
+            <div class="text-center">
+                <span class="material-symbols-outlined text-6xl text-primary mb-4">support_agent</span>
+                <h2 class="font-headline font-black text-4xl tracking-tight uppercase">Hardware Support</h2>
+                <p class="font-label text-sm text-white/50 mt-2">Open a direct ticket with Lifesaver Engineering Core.</p>
+            </div>
+
+            <form class="bg-[#1C1B1B] border border-white/10 rounded-xl p-8 shadow-xl flex flex-col gap-4">
+                
+                <div>
+                    <label class="font-label text-[10px] tracking-widest uppercase text-white/50">Issue Type</label>
+                    <select class="w-full bg-[#0A0A0A] border border-white/10 rounded p-3 text-sm mt-1 focus:border-primary">
+                        <option>V2V Connectivity Drop</option>
+                        <option>GPS Sync Offset</option>
+                        <option>UI Console Freeze</option>
+                        <option>Other Network Anomaly</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="font-label text-[10px] tracking-widest uppercase text-white/50">Urgency Level</label>
+                    <select class="w-full bg-[#0A0A0A] border border-white/10 rounded p-3 text-sm mt-1 focus:border-primary">
+                        <option>Low (Non-mission critical)</option>
+                        <option>Medium (Degraded Performance)</option>
+                        <option class="!text-primary-container">CRITICAL - FLEET DOWN</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="font-label text-[10px] tracking-widest uppercase text-white/50">Description</label>
+                    <textarea rows="4" class="w-full bg-[#0A0A0A] border border-white/10 rounded p-3 text-sm mt-1 focus:border-primary placeholder-white/20" placeholder="Please describe the malfunction..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full mt-4 bg-primary text-black font-label font-bold py-4 uppercase tracking-widest rounded hover:brightness-110 active:scale-95 transition-all">Submit Ticket</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

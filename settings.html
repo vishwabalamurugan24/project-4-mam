@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LIFESAVER | Settings</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface": "#131313", "primary": "#ffb3ac", "primary-container": "#d32f2f", "background": "#131313", "on-background": "#e5e2e1", "tertiary": "#82db7e" }, fontFamily: { headline: ["Inter"], body: ["Inter"], label: ["Space Grotesk"] }}}}
+    </script>
+</head>
+<body class="bg-background text-on-background font-body h-screen flex overflow-hidden">
+    <!-- Sidebar -->
+    <nav class="w-64 bg-[#1C1B1B] border-r border-white/10 flex flex-col h-full shrink-0 z-20">
+        <div class="p-6">
+            <h1 class="font-headline font-black text-2xl text-primary tracking-tighter uppercase">LIFESAVER</h1>
+            <p class="font-label text-[10px] text-on-background/50 tracking-widest uppercase">System Menu</p>
+        </div>
+        <div class="flex-1 overflow-y-auto px-4 py-2 flex flex-col gap-1">
+            <a href="index.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">home</span><span class="font-label text-xs uppercase tracking-widest">Home</span></a>
+            <a href="admin.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">admin_panel_settings</span><span class="font-label text-xs uppercase tracking-widest">Admin Control</span></a>
+            <a href="settings.html" class="flex items-center gap-3 px-3 py-2 rounded bg-primary/10 text-primary border-l-2 border-primary transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">settings</span><span class="font-label text-xs uppercase tracking-widest font-bold">Settings</span></a>
+            <a href="contact.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">help</span><span class="font-label text-xs uppercase tracking-widest">Contact/Help</span></a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-8 bg-[#0A0A0A]">
+        <h2 class="font-headline font-black text-3xl tracking-tight uppercase mb-8">System Settings</h2>
+
+        <div class="max-w-3xl flex flex-col gap-8">
+            
+            <section class="bg-[#1C1B1B] border border-white/5 rounded-xl p-6 shadow-lg">
+                <h3 class="font-label text-xs tracking-widest text-[#E5E2E1]/60 uppercase mb-4 border-b border-white/10 pb-2">Profile Integrity</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="font-label text-[10px] tracking-widest uppercase text-white/50">Operator Name</label>
+                        <input type="text" value="Admin Beta" class="w-full bg-[#0A0A0A] border border-white/10 rounded p-2 text-sm mt-1 focus:border-primary">
+                    </div>
+                    <div>
+                        <label class="font-label text-[10px] tracking-widest uppercase text-white/50">Access Level</label>
+                        <input type="text" value="Level 5 (Override Auth)" disabled class="w-full bg-[#0A0A0A] border border-white/5 rounded p-2 text-sm mt-1 text-white/50 cursor-not-allowed">
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-[#1C1B1B] border border-white/5 rounded-xl p-6 shadow-lg flex flex-col gap-4">
+                <h3 class="font-label text-xs tracking-widest text-[#E5E2E1]/60 uppercase mb-2 border-b border-white/10 pb-2">Global UI Preferences</h3>
+                
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="font-label text-sm text-white">High Contrast Map Mode</p>
+                        <p class="text-xs text-white/40">Forces maximum brightness contrast for low-visibility routing.</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" value="" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-white/20 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                    </label>
+                </div>
+
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="font-label text-sm text-white">Audio Alert Telemetry</p>
+                        <p class="text-xs text-white/40">Enable sirens and TTS readout on incoming emergencies.</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" value="" class="sr-only peer">
+                        <div class="w-11 h-6 bg-white/20 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                    </label>
+                </div>
+            </section>
+
+        </div>
+    </main>
+</body>
+</html>
