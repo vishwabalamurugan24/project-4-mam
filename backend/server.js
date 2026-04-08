@@ -16,6 +16,26 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: '*' } });
 
+io.on('connection', (socket) => {
+    console.log('Mobile/Web unit connected:', socket.id);
+    
+    socket.on('emergency_start', (data) => {
+        console.log('Emergency Signal Received:', data);
+        io.emit('emergency_event', { ...data, type: 'start', timestamp: new Date() });
+    });
+
+    socket.on('emergency_stop', (data) => {
+        console.log('Emergency Situation Resolved:', data);
+        io.emit('emergency_event', { ...data, type: 'stop', timestamp: new Date() });
+    });
+
+    socket.on('gps_ping', (data) => {
+        io.emit('gps_update', data);
+    });
+
+    socket.on('disconnect', () => console.log('Unit disconnected'));
+});
+
 app.use(cors());
 app.use(bodyParser.json());
 

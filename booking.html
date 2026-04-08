@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -119,12 +120,28 @@
     </main>
 
     <script>
+        const socket = io('http://localhost:5000');
+        
+        socket.on('connect', () => {
+            console.log('Dispatch relay active: node_' + socket.id.substring(0,4));
+        });
+
         document.getElementById('bookingForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const btn = e.target.querySelector('button');
+            const hospital = e.target.querySelector('input[name="hospital"]:checked').closest('label').querySelector('p').innerText;
+            
             btn.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> SYNCHRONIZING WITH V2V MESH...';
             btn.disabled = true;
             
+            // Emit to socket mesh
+            socket.emit('emergency_start', { 
+                ambulanceId: 'AMB-DISPATCH-' + Math.floor(Math.random() * 1000),
+                hospital: hospital,
+                severity: e.target.querySelector('select').value,
+                timestamp: new Date()
+            });
+
             setTimeout(() => {
                 window.location.href = 'tracking.html';
             }, 1500);

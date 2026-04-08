@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -346,4 +347,25 @@
 <a class="text-[10px] uppercase tracking-widest font-semibold text-slate-400 hover:text-blue-500 transition-opacity" href="#">Terms of Service</a>
 </div>
 </footer>
+<script>
+        const socket = io('http://localhost:5000');
+        
+        socket.on('connect', () => {
+            console.log('Tracking mesh synchronization active');
+        });
+
+        socket.on('emergency_event', (data) => {
+            if (data.type === 'start') {
+                console.log('EMERGENCY BROADCAST DETECTED:', data.ambulanceId);
+                // In a real app, we would focus the map on the unit
+                const ambMarker = document.querySelector('.marker-pulse.text-primary').parentElement;
+                ambMarker.classList.add('scale-125', 'transition-transform');
+            }
+        });
+
+        socket.on('gps_update', (data) => {
+            console.log('UNIT PING:', data);
+            // Logic to move markers would go here
+        });
+    </script>
 </body></html>

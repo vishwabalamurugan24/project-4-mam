@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 <style>
         body { font-family: 'Inter', sans-serif; }
         .material-symbols-outlined {
@@ -178,11 +179,15 @@
 </div>
 </button>
 <script>
-        const emergencyChannel = new BroadcastChannel('lifesaver_emergencies');
+        const socket = io('http://localhost:5000');
         let isActive = false;
         
         const sirenBtn = document.getElementById('activateSiren');
         const sirenText = document.getElementById('sirenText');
+
+        socket.on('connect', () => {
+            console.log('Ambulance mesh synchronization active: unit_' + socket.id.substring(0,4));
+        });
         
         sirenBtn.addEventListener('click', () => {
             isActive = !isActive;
@@ -190,11 +195,11 @@
             if (isActive) {
                 sirenBtn.classList.add('animate-pulse', 'ring-8', 'ring-red-500/50');
                 sirenText.innerHTML = 'DEACTIVATE<br/>SIREN';
-                emergencyChannel.postMessage({ type: 'emergency_start', ambulanceId: 'Unit 402' });
+                socket.emit('emergency_start', { ambulanceId: 'Unit 402', location: 'Metropolis Central' });
             } else {
                 sirenBtn.classList.remove('animate-pulse', 'ring-8', 'ring-red-500/50');
                 sirenText.innerHTML = 'ACTIVATE<br/>SIREN';
-                emergencyChannel.postMessage({ type: 'emergency_stop', ambulanceId: 'Unit 402' });
+                socket.emit('emergency_stop', { ambulanceId: 'Unit 402' });
             }
         });
     </script>

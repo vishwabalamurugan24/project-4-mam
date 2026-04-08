@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -319,13 +320,19 @@
 </div>
 </footer>
 <script>
-        const emergencyChannel = new BroadcastChannel('lifesaver_emergencies');
+        const socket = io('http://localhost:5000');
         const alertCount = document.getElementById('alertCount');
         const queueCount = document.getElementById('queueCount');
         const dispatchQueue = document.getElementById('dispatchQueue');
-        
-        emergencyChannel.onmessage = (event) => {
-            if (event.data.type === 'emergency_start') {
+
+        console.log('Connecting to mesh network...');
+
+        socket.on('connect', () => {
+            console.log('Mesh synchronization established: node_' + socket.id.substring(0,4));
+        });
+
+        socket.on('emergency_event', (data) => {
+            if (data.type === 'start') {
                 alertCount.innerText = '09';
                 queueCount.innerText = '5 Pending';
                 
@@ -335,19 +342,19 @@
                 newIncident.innerHTML = `
                     <div class="flex justify-between items-center mb-1">
                         <span class="text-xs font-bold text-tertiary uppercase tracking-tighter">Unit Emergency</span>
-                        <span class="text-[10px] font-semibold text-tertiary">JUST NOW</span>
+                        <span class="text-[10px] font-semibold text-tertiary">LIVE</span>
                     </div>
-                    <p class="text-sm font-bold text-on-surface">${event.data.ambulanceId} Siren Active</p>
-                    <p class="text-xs text-outline mt-1 truncate">Broadcasting V2V alerts. Traffic signals synchronized.</p>
+                    <p class="text-sm font-bold text-on-surface">${data.ambulanceId} Siren Active</p>
+                    <p class="text-xs text-outline mt-1 truncate">Broadcasting V2V mesh alerts. Route optimization sequence active.</p>
                 `;
                 dispatchQueue.prepend(newIncident);
-            } else if (event.data.type === 'emergency_stop') {
+            } else if (data.type === 'stop') {
                 alertCount.innerText = '08';
                 queueCount.innerText = '4 Pending';
                 const activeInc = document.getElementById('activeIncident');
                 if (activeInc) activeInc.remove();
             }
-        };
+        });
     </script>
 
 </main>
