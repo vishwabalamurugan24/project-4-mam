@@ -4,23 +4,15 @@ import Map from './components/Map';
 import ControlCenterDashboard from './components/ControlCenterDashboard';
 
 function App() {
+  const isDashboard = window.location.hash === '#modern-dashboard';
+
+  if (!isDashboard) {
+    // If we're on the home page, React stays silent
+    return null;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Map />
       <ControlCenterDashboard />
     </div>
   );
