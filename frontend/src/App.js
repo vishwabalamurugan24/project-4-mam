@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Map from './components/Map';
 import ControlCenterDashboard from './components/ControlCenterDashboard';
@@ -13,6 +12,7 @@ function App() {
 
   return (
     <div className="App">
+      <Map />
       <ControlCenterDashboard />
     </div>
   );
