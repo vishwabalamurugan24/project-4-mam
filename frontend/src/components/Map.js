@@ -6,7 +6,7 @@ const Map = () => {
     script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places`;
     script.async = true;
     script.onload = () => {
-      const map = new window.google.maps.Map(document.getElementById('map'), {
+      new window.google.maps.Map(document.getElementById('map'), {
         center: { lat: 37.7749, lng: -122.4194 }, // Default to San Francisco
         zoom: 12,
       });
