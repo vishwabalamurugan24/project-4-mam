@@ -1,123 +1,332 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>LIFESAVER | Analytics</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface": "#131313", "primary": "#ffb3ac", "primary-container": "#d32f2f", "background": "#131313", "on-background": "#e5e2e1", "secondary": "#a5c8ff", "tertiary": "#82db7e" }, fontFamily: { headline: ["Inter"], body: ["Inter"], label: ["Space Grotesk"] }}}}
-    </script>
-</head>
-<body class="bg-background text-on-background font-body h-screen flex overflow-hidden">
-    <!-- Sidebar -->
-    <nav class="w-64 bg-[#1C1B1B] border-r border-white/10 flex flex-col h-full shrink-0 z-20">
-        <div class="p-6">
-            <h1 class="font-headline font-black text-2xl text-primary tracking-tighter uppercase">LIFESAVER</h1>
-            <p class="font-label text-[10px] text-on-background/50 tracking-widest uppercase">System Menu</p>
-        </div>
-        <div class="flex-1 overflow-y-auto px-4 py-2 flex flex-col gap-1">
-            <a href="index.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">home</span><span class="font-label text-xs uppercase tracking-widest">Home</span></a>
-            <a href="admin.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">admin_panel_settings</span><span class="font-label text-xs uppercase tracking-widest">Admin Control</span></a>
-            <a href="ambulance.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">medical_services</span><span class="font-label text-xs uppercase tracking-widest">Ambulance</span></a>
-            <a href="driver.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">directions_car</span><span class="font-label text-xs uppercase tracking-widest">Driver Alert</span></a>
-            <a href="tracking.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">map</span><span class="font-label text-xs uppercase tracking-widest">Live Tracking</span></a>
-            <a href="traffic.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">traffic</span><span class="font-label text-xs uppercase tracking-widest">Traffic Mgmt</span></a>
-            <a href="analytics.html" class="flex items-center gap-3 px-3 py-2 rounded bg-primary/10 text-primary border-l-2 border-primary transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">analytics</span><span class="font-label text-xs uppercase tracking-widest font-bold">Analytics</span></a>
-            <a href="settings.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">settings</span><span class="font-label text-xs uppercase tracking-widest">Settings</span></a>
-            <a href="contact.html" class="flex items-center gap-3 px-3 py-2 rounded text-white/50 hover:bg-[#2A2A2A] hover:text-white transition-colors cursor-pointer"><span class="material-symbols-outlined text-[18px]">help</span><span class="font-label text-xs uppercase tracking-widest">Contact/Help</span></a>
-        </div>
-    </nav>
 
-    <!-- Main Content -->
-    <main class="flex-1 overflow-y-auto p-8 bg-[#0A0A0A]">
-        <div class="flex justify-between items-center mb-8">
-            <h2 class="font-headline font-black text-3xl tracking-tight uppercase">Performance Analytics</h2>
-            <span id="refresh-btn" class="material-symbols-outlined cursor-pointer text-white/50 hover:text-white" onclick="fetchMetrics()">refresh</span>
-        </div>
-
-        <div class="grid grid-cols-3 gap-6 mb-8">
-            <div class="bg-[#1C1B1B] p-6 rounded-xl border border-white/5 flex flex-col justify-between shadow-lg">
-                <span class="font-label text-xs text-secondary uppercase tracking-widest">Avg Response Time</span>
-                <span id="metric-response" class="font-headline text-5xl font-black mt-2">-- <span class="text-xl text-white/50 font-normal">MIN</span></span>
-                <span class="text-tertiary text-xs mt-2 flex items-center gap-1"><span class="material-symbols-outlined text-xs">trending_down</span> 12% vs last month</span>
-            </div>
-            <div class="bg-[#1C1B1B] p-6 rounded-xl border border-white/5 flex flex-col justify-between shadow-lg">
-                <span class="font-label text-xs text-primary uppercase tracking-widest">Active Ambulances</span>
-                <span id="metric-corridors" class="font-headline text-5xl font-black mt-2">--</span>
-                <span class="text-white/50 text-xs mt-2 uppercase tracking-widest">System Wide En-Route</span>
-            </div>
-            <div class="bg-[#1C1B1B] p-6 rounded-xl border border-white/5 flex flex-col justify-between shadow-lg">
-                <span class="font-label text-xs text-tertiary uppercase tracking-widest">Total Monitored Nodes</span>
-                <span id="metric-nodes" class="font-headline text-5xl font-black mt-2">--</span>
-                <span class="text-tertiary text-xs mt-2 flex items-center gap-1"><span class="material-symbols-outlined text-xs">verified</span> V2V Efficiencies</span>
-            </div>
-        </div>
-
-        <div class="bg-[#1C1B1B] p-6 rounded-xl border border-white/5 shadow-lg h-96 flex flex-col justify-center items-center relative overflow-hidden group">
-            <!-- Simulated Graph Bar Effect -->
-            <div class="absolute inset-0 flex items-end justify-around px-12 opacity-20 pointer-events-none pb-12 pt-24 gap-2">
-                <div class="bg-secondary w-full h-[40%] rounded-t-sm"></div>
-                <div class="bg-secondary w-full h-[60%] rounded-t-sm"></div>
-                <div class="bg-secondary w-full h-[30%] rounded-t-sm"></div>
-                <div class="bg-secondary w-full h-[80%] rounded-t-sm animate-pulse shadow-[0_0_20px_#a5c8ff]"></div>
-                <div class="bg-tertiary w-full h-[50%] rounded-t-sm"></div>
-                <div class="bg-tertiary w-full h-[20%] rounded-t-sm"></div>
-                <div class="bg-tertiary w-full h-[90%] rounded-t-sm shadow-[0_0_20px_#82db7e]"></div>
-            </div>
-
-            <p class="font-label text-white/50 uppercase tracking-widest text-sm flex flex-col items-center gap-4 z-10 transition-opacity">
-                <span class="material-symbols-outlined text-5xl">ssid_chart</span>
-                Interactive Graph Component
-                <span class="text-[10px] text-white/30 lowercase normal-case tracking-normal">(ChartJS to be initialized here)</span>
-            </p>
-        </div>
-    </main>
-
-    <!-- Client-side Logic -->
-    <script>
-        const API_URL = 'http://localhost:5000/api';
-
-        async function fetchMetrics() {
-            const icon = document.getElementById('refresh-btn');
-            const elResponse = document.getElementById('metric-response');
-            const elCorridors = document.getElementById('metric-corridors');
-            const elNodes = document.getElementById('metric-nodes');
-            
-            try {
-                icon.classList.add('animate-spin');
-                
-                const [ambRes, alertRes] = await Promise.all([
-                    fetch(`${API_URL}/ambulances`),
-                    fetch(`${API_URL}/alerts`)
-                ]);
-                
-                const ambulances = await ambRes.json();
-                const alerts = await alertRes.json();
-                
-                // Calculate dynamic stats
-                const activeUnits = ambulances.filter(a => a.status === 'En Route' || a.status === 'On Scene').length;
-                const totalNodes = ambulances.length * 1024 + Math.floor(Math.random() * 50); // Pseudo calculation
-
-                elResponse.innerHTML = `4.2 <span class="text-xl text-white/50 font-normal">MIN</span>`; // Mocked historic
-                elCorridors.innerHTML = `${activeUnits}`;
-                elNodes.innerHTML = `${totalNodes.toLocaleString()}`;
-
-            } catch (err) {
-                console.error(err);
-                elResponse.innerText = 'ERR';
-                elCorridors.innerText = 'ERR';
-                elNodes.innerText = 'ERR';
-            } finally {
-                icon.classList.remove('animate-spin');
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LIFESAVER | Reports &amp; Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#d3e4ff",
+                    "surface-container-high": "#e8e8e8",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#f9f9f9",
+                    "surface-container-highest": "#e2e2e2",
+                    "secondary": "#446084",
+                    "on-error-container": "#93000a",
+                    "on-primary-container": "#fdfcff",
+                    "on-secondary-container": "#3f5b7f",
+                    "on-tertiary-container": "#fffbff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#93000d",
+                    "primary-container": "#0077ce",
+                    "surface-container": "#eeeeee",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#a2c9ff",
+                    "tertiary-fixed": "#ffdad6",
+                    "tertiary-container": "#db322f",
+                    "outline": "#707783",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-surface": "#1a1c1c",
+                    "on-tertiary-fixed": "#410002",
+                    "primary-fixed": "#d3e4ff",
+                    "surface-dim": "#dadada",
+                    "on-primary-fixed-variant": "#004881",
+                    "on-background": "#1a1c1c",
+                    "surface-bright": "#f9f9f9",
+                    "tertiary": "#b7131a",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#001c38",
+                    "tertiary-fixed-dim": "#ffb4ac",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#a2c9ff",
+                    "surface-tint": "#0060a8",
+                    "primary": "#005ea4",
+                    "on-secondary-fixed-variant": "#2b486b",
+                    "outline-variant": "#c0c7d4",
+                    "secondary-fixed-dim": "#acc8f2",
+                    "surface": "#f9f9f9",
+                    "inverse-surface": "#2f3131",
+                    "surface-variant": "#e2e2e2",
+                    "secondary-container": "#b7d4fd",
+                    "on-secondary-fixed": "#001c38",
+                    "surface-container-low": "#f3f3f3",
+                    "on-surface-variant": "#404752",
+                    "inverse-on-surface": "#f1f1f1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
             }
-        }
-
-        // Fetch on load
-        fetchMetrics();
-        setInterval(fetchMetrics, 30000);
+          },
+        },
+      }
     </script>
-</body>
-</html>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sentinel-shadow {
+            box-shadow: 0px 24px 48px rgba(0, 28, 56, 0.08);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+        }
+        .custom-gradient {
+            background: linear-gradient(180deg, #0077CE 0%, #005EA4 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface selection:bg-primary-fixed">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 flex items-center justify-between px-6 h-16 w-full bg-white/85 dark:bg-slate-900/85 backdrop-blur-md shadow-sm font-sans antialiased tracking-tight">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-slate-900 dark:text-white">LIFESAVER</span>
+<div class="hidden md:flex items-center space-gap-6 text-sm">
+<a class="px-3 py-1 text-slate-500 hover:text-slate-900 transition-colors" href="#">Operations</a>
+<a class="px-3 py-1 text-blue-700 dark:text-blue-300 font-semibold border-b-2 border-blue-600" href="#">Analytics</a>
+<a class="px-3 py-1 text-slate-500 hover:text-slate-900 transition-colors" href="#">Inventory</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="pl-10 pr-4 py-1.5 text-xs rounded-full bg-surface-container-low border-none focus:ring-1 focus:ring-primary w-64" placeholder="Search data..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:bg-slate-50 transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</nav>
+<!-- Side Navigation Bar -->
+<aside class="h-screen w-64 fixed left-0 top-0 pt-16 flex flex-col bg-slate-50 dark:bg-slate-950 border-r border-slate-200/50 dark:border-slate-800/50">
+<div class="px-6 py-8">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">shield</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Command Center</p>
+<p class="text-[10px] uppercase tracking-widest text-slate-500">Regional Supervisor</p>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:pl-2 transition-all duration-200 active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:pl-2 transition-all duration-200 active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="emergency">emergency</span>
+                    Active Incidents
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:pl-2 transition-all duration-200 active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+                    Resource Map
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:pl-2 transition-all duration-200 active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+                    Personnel
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-sm font-medium bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-r-4 border-blue-600 hover:pl-2 transition-all duration-200 active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                    Analytics
+                </a>
+</nav>
+</div>
+<div class="mt-auto p-6 space-y-1 border-t border-slate-100">
+<a class="flex items-center gap-3 px-4 py-2 text-sm text-slate-500 hover:text-slate-900" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-sm text-slate-500 hover:text-slate-900" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help">help</span>
+                Support
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-16 min-h-screen bg-surface">
+<div class="max-w-7xl mx-auto p-8">
+<!-- Page Header -->
+<header class="flex justify-between items-end mb-12">
+<div>
+<p class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary mb-2">Performance Audit</p>
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface">Regional Analytics</h1>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 bg-surface-container-lowest text-on-surface text-sm font-semibold rounded-md border border-outline-variant/15 sentinel-shadow hover:bg-surface-container-low transition-colors">
+                        Export Report
+                    </button>
+<button class="px-6 py-2.5 custom-gradient text-white text-sm font-semibold rounded-md sentinel-shadow active:scale-95 transition-transform">
+                        New Incident
+                    </button>
+</div>
+</header>
+<!-- Bento Grid Metrics -->
+<div class="grid grid-cols-12 gap-8 mb-12">
+<!-- Large Success Metric -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest p-8 rounded-xl sentinel-shadow flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-primary mb-4">verified</span>
+<h3 class="text-xs uppercase tracking-widest font-bold text-slate-500 mb-6">Mission Success %</h3>
+<p class="text-6xl font-extrabold tracking-tighter text-on-surface">98.4<span class="text-2xl text-primary">%</span></p>
+</div>
+<div class="mt-8 pt-8 border-t border-outline-variant/10 flex items-center gap-2">
+<span class="text-emerald-600 text-xs font-bold">+1.2%</span>
+<span class="text-[10px] text-slate-400 uppercase tracking-tighter font-semibold">vs last quarter</span>
+</div>
+</div>
+<!-- Response Time Trend -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest p-8 rounded-xl sentinel-shadow">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="text-xs uppercase tracking-widest font-bold text-slate-500">Response Latency trends</h3>
+<p class="text-2xl font-bold text-on-surface mt-1">4m 12s <span class="text-sm font-normal text-slate-400">Avg</span></p>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-surface-container-low text-[10px] font-bold rounded">24H</span>
+<span class="px-2 py-1 bg-primary text-white text-[10px] font-bold rounded">7D</span>
+<span class="px-2 py-1 bg-surface-container-low text-[10px] font-bold rounded">30D</span>
+</div>
+</div>
+<div class="h-48 flex items-end justify-between gap-2 px-4">
+<div class="w-full bg-primary-fixed-dim rounded-t h-[40%]"></div>
+<div class="w-full bg-primary-fixed-dim rounded-t h-[55%]"></div>
+<div class="w-full bg-primary-fixed-dim rounded-t h-[45%]"></div>
+<div class="w-full bg-primary-fixed-dim rounded-t h-[70%]"></div>
+<div class="w-full bg-primary rounded-t h-[90%]"></div>
+<div class="w-full bg-primary-fixed-dim rounded-t h-[65%]"></div>
+<div class="w-full bg-primary-fixed-dim rounded-t h-[50%]"></div>
+<div class="w-full bg-primary-fixed-dim rounded-t h-[75%]"></div>
+<div class="w-full bg-primary-fixed-dim rounded-t h-[60%]"></div>
+<div class="w-full bg-primary-fixed-dim rounded-t h-[85%]"></div>
+</div>
+</div>
+<!-- Incident Map -->
+<div class="col-span-12 lg:col-span-7 bg-surface-container-lowest overflow-hidden rounded-xl sentinel-shadow min-h-[400px] relative">
+<div class="absolute top-6 left-6 z-10 bg-white/90 backdrop-blur p-4 rounded-lg shadow-lg">
+<h3 class="text-xs uppercase tracking-widest font-bold text-slate-500 mb-1">Incident Concentration</h3>
+<p class="text-sm font-bold text-on-surface">Sector 7-B: High Risk</p>
+</div>
+<img class="w-full h-full object-cover grayscale brightness-110 contrast-125" data-alt="A clean, minimalist high-tech digital map with blue and red data heat map overlays showing urban incident density" data-location="Metropolis Central" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2zx2v1NsmJci1UDvYRyEa64n0PjjVDFHQSajveo0OJ5yJC5GTAw1sPgcghBxfwReVCuwS7DyeLOZYnKTHpwDmeCvdge9eyP8_pZmKB0_n7ErzmFPtLoamQb2Md5wfj03-fqfwbnM95mBfXH3HyKO4Kwuy5iAfChPrTfFTgPf0aBugxlcNnogEvXc2ttg87kNDM0aiqN7Ps9NfaKtK1dP2RFG2NGyG24UDfTcNoaEkFrsC0E7Y4K3HrPPp3scMTDh1WKFruIt2qQ"/>
+</div>
+<!-- Tactical Alert Card -->
+<div class="col-span-12 lg:col-span-5 bg-tertiary-container p-8 rounded-xl sentinel-shadow flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 text-on-tertiary-container mb-4">
+<span class="material-symbols-outlined">warning</span>
+<span class="text-xs uppercase tracking-[0.2em] font-bold">Critical Efficiency Gap</span>
+</div>
+<p class="text-2xl font-bold text-on-tertiary-container leading-tight">Emergency response delay detected in Northern District for Medical-Level 3 calls.</p>
+</div>
+<button class="mt-8 px-6 py-3 bg-white text-tertiary text-xs font-bold uppercase tracking-widest rounded-md hover:bg-tertiary-fixed transition-colors">
+                        Deploy Investigation
+                    </button>
+</div>
+</div>
+<!-- Recent Incident Log Table -->
+<section class="bg-surface-container-low rounded-xl p-8 mb-12">
+<div class="flex justify-between items-center mb-8">
+<h2 class="text-lg font-bold text-on-surface">Recent Incident Log</h2>
+<div class="flex gap-4">
+<button class="text-sm font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+                            Filters
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-[10px] uppercase tracking-widest text-slate-400 font-bold border-b border-outline-variant/10">
+<th class="pb-4">Incident ID</th>
+<th class="pb-4">Category</th>
+<th class="pb-4">Personnel</th>
+<th class="pb-4 text-right">Response Time</th>
+<th class="pb-4 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="group hover:bg-white/50 transition-colors">
+<td class="py-5 font-mono text-xs text-primary font-bold">#INC-4921</td>
+<td class="py-5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-blue-500"></div>
+<span class="text-sm font-semibold">Urban Extraction</span>
+</div>
+</td>
+<td class="py-5">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-surface bg-slate-200"></div>
+<div class="w-6 h-6 rounded-full border-2 border-surface bg-slate-300"></div>
+</div>
+</td>
+<td class="py-5 text-right font-mono text-sm">3m 44s</td>
+<td class="py-5 text-right">
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold rounded-full uppercase tracking-tighter">Resolved</span>
+</td>
+</tr>
+<tr class="group hover:bg-white/50 transition-colors">
+<td class="py-5 font-mono text-xs text-primary font-bold">#INC-4919</td>
+<td class="py-5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-sm font-semibold">Fire Containment</span>
+</div>
+</td>
+<td class="py-5 text-sm text-slate-500">Squad 9 Alpha</td>
+<td class="py-5 text-right font-mono text-sm">5m 02s</td>
+<td class="py-5 text-right">
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold rounded-full uppercase tracking-tighter">Resolved</span>
+</td>
+</tr>
+<tr class="group hover:bg-white/50 transition-colors">
+<td class="py-5 font-mono text-xs text-primary font-bold">#INC-4918</td>
+<td class="py-5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-blue-500"></div>
+<span class="text-sm font-semibold">Medical Assist</span>
+</div>
+</td>
+<td class="py-5 text-sm text-slate-500">Medic-4</td>
+<td class="py-5 text-right font-mono text-sm">2m 15s</td>
+<td class="py-5 text-right">
+<span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-bold rounded-full uppercase tracking-tighter">Post-Op</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-4 mt-auto flex justify-between items-center px-8 ml-64 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+<p class="text-[10px] uppercase tracking-widest font-semibold text-slate-400">© 2024 LIFESAVER Systems. All Rights Reserved.</p>
+<div class="flex gap-6">
+<a class="text-[10px] uppercase tracking-widest font-semibold text-slate-400 hover:text-blue-500 transition-opacity" href="#">System Integrity</a>
+<a class="text-[10px] uppercase tracking-widest font-semibold text-slate-400 hover:text-blue-500 transition-opacity" href="#">Privacy Protocol</a>
+<a class="text-[10px] uppercase tracking-widest font-semibold text-slate-400 hover:text-blue-500 transition-opacity" href="#">Terms of Service</a>
+</div>
+</footer>
+</body></html>

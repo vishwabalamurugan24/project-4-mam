@@ -1,85 +1,180 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>LIFESAVER | V2V Intelligence Platform</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <script id="tailwind-config">
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LIFESAVER | Tactical V2V Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     "colors": {
-                        "primary-container": "#d32f2f",
-                        "surface": "#131313",
-                        "outline": "#ab8985",
-                        "on-surface-variant": "#e4beba",
-                        "surface-bright": "#393939",
-                        "primary": "#ffb3ac",
-                        "secondary": "#a5c8ff",
-                        "background": "#131313",
-                        "on-background": "#e5e2e1",
-                        "surface-container-highest": "#353534",
-                        "surface-variant": "#353534",
+                        "secondary-fixed": "#d3e4ff",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f9f9f9",
+                        "surface-container-highest": "#e2e2e2",
+                        "secondary": "#446084",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#fdfcff",
+                        "on-secondary-container": "#3f5b7f",
+                        "on-tertiary-container": "#fffbff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#93000d",
+                        "primary-container": "#0077ce",
+                        "surface-container": "#eeeeee",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#a2c9ff",
+                        "tertiary-fixed": "#ffdad6",
+                        "tertiary-container": "#db322f",
+                        "outline": "#707783",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-surface": "#1a1c1c",
+                        "on-tertiary-fixed": "#410002",
+                        "primary-fixed": "#d3e4ff",
+                        "surface-dim": "#dadada",
+                        "on-primary-fixed-variant": "#004881",
+                        "on-background": "#1a1c1c",
+                        "surface-bright": "#f9f9f9",
+                        "tertiary": "#b7131a",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001c38",
+                        "tertiary-fixed-dim": "#ffb4ac",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#a2c9ff",
+                        "surface-tint": "#0060a8",
+                        "primary": "#005ea4",
+                        "on-secondary-fixed-variant": "#2b486b",
+                        "outline-variant": "#c0c7d4",
+                        "secondary-fixed-dim": "#acc8f2",
+                        "surface": "#f9f9f9",
+                        "inverse-surface": "#2f3131",
+                        "surface-variant": "#e2e2e2",
+                        "secondary-container": "#b7d4fd",
+                        "on-secondary-fixed": "#001c38",
+                        "surface-container-low": "#f3f3f3",
+                        "on-surface-variant": "#404752",
+                        "inverse-on-surface": "#f1f1f1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
                     },
                     "fontFamily": {
                         "headline": ["Inter"],
                         "body": ["Inter"],
-                        "label": ["Space Grotesk"]
+                        "label": ["Inter"]
                     }
                 },
             },
         }
     </script>
-    <style>
-        .map-gradient { background: linear-gradient(to bottom, rgba(19, 19, 19, 1) 0%, rgba(19, 19, 19, 0.4) 50%, rgba(19, 19, 19, 1) 100%); }
-        .hero-glow { box-shadow: 0 0 100px rgba(211, 47, 47, 0.2); }
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .sentinel-shadow {
+            box-shadow: 0px 24px 48px rgba(0, 28, 56, 0.08);
+        }
+        .tactical-gradient {
+            background: linear-gradient(180deg, #0077CE 0%, #005EA4 100%);
+        }
+        .hero-pattern {
+            background-image: radial-gradient(circle, #0077CE 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
     </style>
 </head>
-<body class="bg-background text-on-background font-body h-screen flex flex-col relative overflow-hidden">
-    <!-- Header -->
-    <header class="flex justify-between items-center w-full px-12 py-6 z-50 absolute top-0">
-        <div class="flex items-center gap-4">
-            <span class="font-headline font-black tracking-tighter text-3xl text-primary uppercase">LIFESAVER</span>
-        </div>
-        <div class="flex gap-8 items-center">
-            <a href="login.html" class="font-label tracking-widest text-sm hover:text-secondary hover:scale-105 transition-all text-on-background/70">LOGIN</a>
-            <a href="register.html" class="font-label font-bold tracking-widest text-sm bg-surface-container-highest hover:bg-white hover:text-black py-3 px-8 rounded-sm transition-all border border-outline/30 uppercase">Register</a>
-        </div>
-    </header>
-
-    <!-- Background Image -->
-    <div class="absolute inset-0 z-0">
-        <img class="w-full h-full object-cover opacity-30 grayscale mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyzre0P1pmQ75xDUmlBcC4wb-sp7QHu632RcPLvc0CfR6hahgSKijQ86Kx-c_118vIT_Cgo2WyTddlgS0Am5ix0rQ0A4_dGTsp3dAKFVVW-Uiq6BR6m1S_8nCemPZdUcQ6czgNMOjKZytZYJcDMWWEppqLc3aMKqHW66mxSA0Po8kpp7fQ1-qN9C0S8BncOXbIDmwcGH_rhWfd9EdAoemIDYOYvUvW8WBMlyqyHQKF1ZzJN8S5tiQ_2QR-RWG1PWsu5EShAMdrkw" alt="Urban Grid">
-        <div class="absolute inset-0 map-gradient"></div>
-    </div>
-
-    <!-- Main Content -->
-    <main class="flex-1 flex flex-col items-center justify-center z-10 text-center px-4 pt-16">
-        <div class="max-w-4xl hero-glow rounded-3xl p-10 bg-black/20 backdrop-blur-sm border border-outline/10">
-            <h1 class="font-headline font-black text-6xl md:text-8xl tracking-tighter leading-[0.9] text-white mb-6">
-                CLEAR. <span class="text-primary">AHEAD.</span>
-            </h1>
-            <p class="font-label text-lg md:text-2xl text-on-surface-variant font-light max-w-2xl mx-auto mb-12">
-                The world's first V2V connectivity framework strictly designed to optimize ambulance trajectory and eliminate civilian congestion using distributed intelligence.
-            </p>
-            <div class="flex flex-wrap gap-6 justify-center">
-                <a href="admin.html" class="bg-primary-container text-white font-label font-bold py-4 px-10 tracking-widest uppercase rounded hover:scale-105 active:scale-95 transition-all shadow-xl shadow-primary-container/20 border border-primary-container">Enter Command Center</a>
-                <a href="driver.html" class="bg-transparent backdrop-blur-md border border-white/20 text-white font-label font-bold py-4 px-10 tracking-widest uppercase hover:bg-white/10 hover:border-white transition-all rounded">Simulate Driver</a>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer links to pages -->
-    <footer class="z-10 py-6 border-t border-white/10 flex justify-center gap-6 bg-black/40 backdrop-blur-md relative font-label text-xs uppercase tracking-widest text-on-background/40">
-        <a href="ambulance.html" class="hover:text-white transition-colors">Ambulance UI</a>
-        <a href="tracking.html" class="hover:text-white transition-colors">Live Map</a>
-        <a href="traffic.html" class="hover:text-white transition-colors">Traffic Grid</a>
-        <a href="analytics.html" class="hover:text-white transition-colors">Analytics</a>
-        <a href="contact.html" class="hover:text-white transition-colors">Support</a>
-    </footer>
-</body>
-</html>
+<body class="bg-background font-body text-on-surface min-h-screen flex flex-col relative overflow-hidden hero-pattern">
+<!-- Header (Home Mode) -->
+<header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm h-16 flex items-center justify-between px-12">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+</div>
+<span class="text-xl font-extrabold tracking-tighter text-slate-900 uppercase">LIFESAVER</span>
+</div>
+<div class="flex items-center gap-8">
+<a class="text-xs font-bold uppercase tracking-widest text-outline hover:text-primary transition-colors" href="login.html">Personnel Login</a>
+<a class="bg-tactical-gradient text-white px-8 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest sentinel-shadow active:scale-95 transition-all" href="register.html">
+                Enroll Unit
+            </a>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center p-6 text-center z-10">
+<!-- Hero Visuals -->
+<div class="mb-12 relative">
+<div class="absolute inset-0 bg-primary/10 blur-[100px] rounded-full scale-150"></div>
+<div class="relative bg-surface-container-lowest p-8 rounded-3xl sentinel-shadow border-4 border-white inline-block">
+<h1 class="text-6xl md:text-8xl font-black tracking-tighter text-on-surface leading-[0.85] uppercase">
+                    CLEAR.<br/><span class="text-primary-container">AHEAD.</span>
+</h1>
+</div>
+</div>
+<p class="max-w-2xl text-lg md:text-xl text-on-surface-variant font-medium leading-relaxed mb-12">
+            The world's first V2V connectivity framework strictly designed to optimize ambulance trajectory and eliminate civilian congestion using distributed intelligence.
+        </p>
+<div class="flex flex-wrap gap-6 justify-center">
+<a class="group relative bg-surface-container-lowest p-6 rounded-2xl sentinel-shadow w-64 text-left hover:bg-primary-container transition-all duration-300 overflow-hidden" href="login.html">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary mb-4 group-hover:text-white transition-colors" style="font-variation-settings: 'FILL' 1;">podium</span>
+<h3 class="text-sm font-bold uppercase tracking-widest text-on-surface group-hover:text-white transition-colors">Command Access</h3>
+<p class="text-[11px] text-outline group-hover:text-white/80 mt-1 transition-colors">Regional supervisor and dispatch portal.</p>
+</div>
+<div class="absolute -bottom-4 -right-4 opacity-5 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-8xl">hub</span>
+</div>
+</a>
+<a class="group relative bg-surface-container-lowest p-6 rounded-2xl sentinel-shadow w-64 text-left hover:bg-secondary transition-all duration-300 overflow-hidden" href="login.html">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary mb-4 group-hover:text-white transition-colors" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<h3 class="text-sm font-bold uppercase tracking-widest text-on-surface group-hover:text-white transition-colors">Field Response</h3>
+<p class="text-[11px] text-outline group-hover:text-white/80 mt-1 transition-colors">Ambulance HUD and crew telemetry tools.</p>
+</div>
+<div class="absolute -bottom-4 -right-4 opacity-5 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-8xl">local_shipping</span>
+</div>
+</a>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 mt-auto bg-white/80 backdrop-blur-md border-t border-slate-100 flex flex-col md:flex-row justify-between items-center px-12 z-20 gap-6">
+<div class="flex flex-col gap-1">
+<p class="text-[10px] uppercase tracking-widest font-extrabold text-slate-400">© 2024 LIFESAVER Systems. All Rights Reserved.</p>
+<p class="text-[9px] uppercase tracking-[0.2em] font-bold text-primary">Regional Operations Center: Metropolitan Bravo</p>
+</div>
+<div class="flex gap-8">
+<div class="flex flex-col gap-2">
+<span class="text-[10px] uppercase tracking-widest font-bold text-outline">Network Protocols</span>
+<div class="flex gap-4">
+<a class="text-[10px] font-bold text-slate-400 hover:text-primary transition-colors" href="#">Standard-V2V</a>
+<a class="text-[10px] font-bold text-slate-400 hover:text-primary transition-colors" href="#">IEEE 802.11p</a>
+</div>
+</div>
+<div class="flex flex-col gap-2 border-l border-slate-100 pl-8">
+<span class="text-[10px] uppercase tracking-widest font-bold text-outline">Compliance</span>
+<div class="flex gap-4">
+<a class="text-[10px] font-bold text-slate-400 hover:text-primary transition-colors" href="#">System Status</a>
+<a class="text-[10px] font-bold text-slate-400 hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="text-[10px] font-bold text-slate-400 hover:text-primary transition-colors" href="#">Terms</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- HUD Background Elements -->
+<div class="fixed top-20 left-10 pointer-events-none opacity-[0.03]">
+<span class="material-symbols-outlined text-[15rem]">grid_guides</span>
+</div>
+<div class="fixed bottom-10 right-10 pointer-events-none opacity-[0.03]">
+<span class="material-symbols-outlined text-[15rem]">radar</span>
+</div>
+</body></html>
