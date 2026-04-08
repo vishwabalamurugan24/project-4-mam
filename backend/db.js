@@ -70,7 +70,19 @@ const initDB = async () => {
             relatedUnitId TEXT
         )
     `);
-};
+
+    await run(`
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+            identifier TEXT UNIQUE,
+            password TEXT,
+            role TEXT,
+            status TEXT DEFAULT 'Active',
+            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    `);
+}
 
 initDB();
 

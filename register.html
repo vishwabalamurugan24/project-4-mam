@@ -140,58 +140,85 @@
 <h1 class="text-3xl font-extrabold tracking-tight text-on-surface mb-2">Initialize Profile</h1>
 <p class="text-on-surface-variant text-sm">Step 1: Establishing core identification markers for the LIFESAVER network.</p>
 </header>
-<form class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
-<!-- Name Cluster -->
-<div class="flex flex-col gap-2">
-<label class="text-[10px] uppercase tracking-widest font-bold text-outline">Legal Surname</label>
-<input class="bg-surface-container-high border-none border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-sm font-medium p-3 transition-all duration-200" placeholder="e.g. VANCE" type="text"/>
-</div>
-<div class="flex flex-col gap-2">
-<label class="text-[10px] uppercase tracking-widest font-bold text-outline">Given Names</label>
-<input class="bg-surface-container-high border-none border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-sm font-medium p-3 transition-all duration-200" placeholder="e.g. ELIAS" type="text"/>
-</div>
-<!-- Contact Cluster -->
-<div class="flex flex-col gap-2 md:col-span-2">
-<label class="text-[10px] uppercase tracking-widest font-bold text-outline">Secure Email Address</label>
-<input class="bg-surface-container-high border-none border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-sm font-medium p-3 transition-all duration-200" placeholder="e.g. e.vance@lifesaver.org" type="email"/>
-</div>
-<div class="flex flex-col gap-2">
-<label class="text-[10px] uppercase tracking-widest font-bold text-outline">Comms Frequency (Mobile)</label>
-<input class="bg-surface-container-high border-none border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-sm font-medium p-3 transition-all duration-200" placeholder="+1 (555) 000-0000" type="tel"/>
-</div>
-<div class="flex flex-col gap-2">
-<label class="text-[10px] uppercase tracking-widest font-bold text-outline">Date of Origin</label>
-<input class="bg-surface-container-high border-none border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-sm font-medium p-3 transition-all duration-200" type="date"/>
-</div>
-<!-- Selection Block -->
-<div class="md:col-span-2 mt-4">
-<label class="text-[10px] uppercase tracking-widest font-bold text-outline block mb-4">Operational Sector</label>
-<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-<label class="flex items-center gap-3 p-4 bg-surface-container border border-outline-variant/15 rounded-lg cursor-pointer hover:bg-surface-container-high transition-colors">
-<input class="text-primary focus:ring-offset-0 focus:ring-0" name="sector" type="radio"/>
-<span class="text-xs font-bold text-on-surface">Medical</span>
-</label>
-<label class="flex items-center gap-3 p-4 bg-surface-container border border-outline-variant/15 rounded-lg cursor-pointer hover:bg-surface-container-high transition-colors">
-<input class="text-primary focus:ring-offset-0 focus:ring-0" name="sector" type="radio"/>
-<span class="text-xs font-bold text-on-surface">Logistics</span>
-</label>
-<label class="flex items-center gap-3 p-4 bg-surface-container border border-outline-variant/15 rounded-lg cursor-pointer hover:bg-surface-container-high transition-colors">
-<input class="text-primary focus:ring-offset-0 focus:ring-0" name="sector" type="radio"/>
-<span class="text-xs font-bold text-on-surface">Response</span>
-</label>
-</div>
-</div>
-<!-- CTA Section -->
-<div class="md:col-span-2 pt-8 flex justify-between items-center border-t border-surface-container-high mt-4">
-<a class="text-[10px] uppercase tracking-widest font-bold text-outline hover:text-on-surface transition-colors" href="index.html">
-                                Abort Protocol
-                            </a>
-<button class="bg-tactical-gradient text-white px-8 py-3 rounded-lg text-xs font-bold uppercase tracking-widest flex items-center gap-2 active:scale-95 duration-150 shadow-md" type="button" onclick="window.location.href='login.html'">
-                                Finalize Intel
-                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</form>
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8" id="registerForm">
+                    <!-- Name Cluster -->
+                    <div class="flex flex-col gap-2">
+                        <label class="text-[10px] uppercase tracking-widest font-bold text-outline">Personnel Name</label>
+                        <input name="name" class="bg-surface-container-high border-none border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-sm font-medium p-3 transition-all duration-200" placeholder="e.g. ELIAS VANCE" type="text" required>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-[10px] uppercase tracking-widest font-bold text-outline">Unit ID / Identifier</label>
+                        <input name="identifier" class="bg-surface-container-high border-none border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-sm font-medium p-3 transition-all duration-200" placeholder="e.g. AMB-402" type="text" required>
+                    </div>
+                    <!-- Security Passcode -->
+                    <div class="flex flex-col gap-2 md:col-span-2">
+                        <label class="text-[10px] uppercase tracking-widest font-bold text-outline">Security Passcode</label>
+                        <input name="password" class="bg-surface-container-high border-none border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-sm font-medium p-3 transition-all duration-200" placeholder="••••••••" type="password" required>
+                    </div>
+                    <!-- Selection Block -->
+                    <div class="md:col-span-2 mt-4">
+                        <label class="text-[10px] uppercase tracking-widest font-bold text-outline block mb-4">Operational Sector (Role)</label>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <label class="flex items-center gap-3 p-4 bg-surface-container border border-outline-variant/15 rounded-lg cursor-pointer hover:bg-surface-container-high transition-colors">
+                                <input class="text-primary focus:ring-offset-0 focus:ring-0" name="role" type="radio" value="ambulance" checked>
+                                <span class="text-xs font-bold text-on-surface">Ambulance</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 bg-surface-container border border-outline-variant/15 rounded-lg cursor-pointer hover:bg-surface-container-high transition-colors">
+                                <input class="text-primary focus:ring-offset-0 focus:ring-0" name="role" type="radio" value="driver">
+                                <span class="text-xs font-bold text-on-surface">Logistics</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 bg-surface-container border border-outline-variant/15 rounded-lg cursor-pointer hover:bg-surface-container-high transition-colors">
+                                <input class="text-primary focus:ring-offset-0 focus:ring-0" name="role" type="radio" value="control">
+                                <span class="text-xs font-bold text-on-surface">Control</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- CTA Section -->
+                    <div class="md:col-span-2 pt-8 flex justify-between items-center border-t border-surface-container-high mt-4">
+                        <a class="text-[10px] uppercase tracking-widest font-bold text-outline hover:text-on-surface transition-colors" href="index.html">
+                            Abort Protocol
+                        </a>
+                        <button class="bg-tactical-gradient text-white px-8 py-3 rounded-lg text-xs font-bold uppercase tracking-widest flex items-center gap-2 active:scale-95 duration-150 shadow-md" type="submit">
+                            FINALIZE INTEL
+                            <span class="material-symbols-outlined text-sm">shield_with_heart</span>
+                        </button>
+                    </div>
+                </form>
+                <script>
+                    const registerForm = document.getElementById('registerForm');
+                    registerForm.addEventListener('submit', async (e) => {
+                        e.preventDefault();
+                        const formData = new FormData(e.target);
+                        const data = Object.fromEntries(formData.entries());
+                        const btn = e.target.querySelector('button');
+
+                        btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> UPLOADING...';
+                        btn.disabled = true;
+
+                        try {
+                            const response = await fetch('http://localhost:5000/api/auth/register', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(data)
+                            });
+
+                            const result = await response.json();
+
+                            if (response.ok) {
+                                alert('Enrollment Successful. Redirecting to Authentication Platform...');
+                                window.location.href = 'login.html';
+                            } else {
+                                alert(result.error || 'Enrollment Failed. Ensure Unit ID is unique.');
+                                btn.innerHTML = 'FINALIZE INTEL <span class="material-symbols-outlined text-sm">shield_with_heart</span>';
+                                btn.disabled = false;
+                            }
+                        } catch (err) {
+                            console.error('Registration error:', err);
+                            alert('Mesh Sync Error. Encryption tunnel offline.');
+                            btn.disabled = false;
+                        }
+                    });
+                </script>
 </div>
 </section>
 </div>

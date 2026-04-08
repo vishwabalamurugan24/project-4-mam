@@ -164,33 +164,55 @@
                     <span class="material-symbols-outlined text-lg">login</span>
 </button>
 </form>
-<script>
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        
+        loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
-            const role = formData.get('role');
-            const identifier = formData.get('identifier');
-            
-            // Simulation authentication
-            localStorage.setItem('lifesaver_session', JSON.stringify({
-                role: role,
-                identifier: identifier,
-                timestamp: Date.now()
-            }));
+            const data = Object.fromEntries(formData.entries());
+            const btn = e.target.querySelector('button');
+            const originalBtnText = btn.innerHTML;
 
-            // Role-based redirection
-            switch(role) {
-                case 'ambulance':
-                    window.location.href = 'ambulance.html';
-                    break;
-                case 'driver':
-                    window.location.href = 'driver.html';
-                    break;
-                case 'control':
-                    window.location.href = 'admin.html';
-                    break;
-                default:
-                    window.location.href = 'index.html';
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> AUTHENTICATING...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        identifier: data.identifier,
+                        password: data.passcode
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    localStorage.setItem('lifesaver_session', JSON.stringify({
+                        ...result,
+                        timestamp: Date.now()
+                    }));
+
+                    // Role-based redirection
+                    const role = data.role; // Use selected role from form
+                    switch(role) {
+                        case 'ambulance': window.location.href = 'ambulance.html'; break;
+                        case 'driver': window.location.href = 'driver.html'; break;
+                        case 'control': window.location.href = 'admin.html'; break;
+                        default: window.location.href = 'index.html';
+                    }
+                } else {
+                    alert(result.error || 'Authentication Failed. Please check your credentials.');
+                    btn.innerHTML = originalBtnText;
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                console.error('Auth Error:', err);
+                alert('Connection Error. Personnel Mesh Offline.');
+                btn.innerHTML = originalBtnText;
+                btn.disabled = false;
             }
         });
     </script>
