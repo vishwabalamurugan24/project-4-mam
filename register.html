@@ -93,7 +93,7 @@
 <!-- TopNavBar Suppression: Navigation suppressed for Transactional Enrollment Flow -->
 <header class="fixed top-0 w-full z-50 bg-white/85 backdrop-blur-md shadow-sm h-16 flex items-center justify-between px-8">
 <div class="flex items-center gap-2">
-<span class="text-xl font-extrabold tracking-tighter text-slate-900">LIFESAVER</span>
+<a href="index.html" class="text-xl font-extrabold tracking-tighter text-slate-900 border-none">LIFESAVER</a>
 <span class="h-4 w-[1px] bg-outline-variant mx-2"></span>
 <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-outline">Enrollment Portal</span>
 </div>
@@ -183,11 +183,11 @@
 </div>
 <!-- CTA Section -->
 <div class="md:col-span-2 pt-8 flex justify-between items-center border-t border-surface-container-high mt-4">
-<button class="text-[10px] uppercase tracking-widest font-bold text-outline hover:text-on-surface transition-colors" type="button">
+<a class="text-[10px] uppercase tracking-widest font-bold text-outline hover:text-on-surface transition-colors" href="index.html">
                                 Abort Protocol
-                            </button>
-<button class="bg-tactical-gradient text-white px-8 py-3 rounded-lg text-xs font-bold uppercase tracking-widest flex items-center gap-2 active:scale-95 duration-150 shadow-md" type="button">
-                                Next: Tactical Data
+                            </a>
+<button class="bg-tactical-gradient text-white px-8 py-3 rounded-lg text-xs font-bold uppercase tracking-widest flex items-center gap-2 active:scale-95 duration-150 shadow-md" type="button" onclick="window.location.href='login.html'">
+                                Finalize Intel
                                 <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </button>
 </div>
@@ -200,8 +200,9 @@
 <footer class="w-full py-6 mt-auto bg-white border-t border-slate-100 flex justify-between items-center px-8">
 <span class="text-[10px] uppercase tracking-widest font-semibold text-slate-400">© 2024 LIFESAVER Systems. All Rights Reserved.</span>
 <div class="flex gap-6">
-<a class="text-[10px] uppercase tracking-widest font-semibold text-slate-400 hover:text-primary transition-opacity" href="#">System Integrity</a>
-<a class="text-[10px] uppercase tracking-widest font-semibold text-slate-400 hover:text-primary transition-opacity" href="#">Privacy Protocol</a>
+<a class="hover:text-primary transition-colors" href="contact.html">System Status</a>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<a class="hover:text-primary transition-colors" href="contact.html">Support Desk</a>
 <a class="text-[10px] uppercase tracking-widest font-semibold text-slate-400 hover:text-primary transition-opacity" href="#">Terms of Service</a>
 </div>
 </footer>
