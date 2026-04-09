@@ -2,7 +2,7 @@ const db = require("../db");
 
 // Create Table
 const createTable = () => {
-  db.run(`
+  db.exec(`
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
@@ -12,22 +12,21 @@ const createTable = () => {
 };
 
 // Add User
-const addUser = (name, email, callback) => {
-  db.run(
-    "INSERT INTO users (name, email) VALUES (?, ?)",
-    [name, email],
-    callback
-  );
+const addUser = (name, email) => {
+  const stmt = db.prepare("INSERT INTO users (name, email) VALUES (?, ?)");
+  return stmt.run(name, email);
 };
 
 // Get Users
-const getUsers = (callback) => {
-  db.all("SELECT * FROM users", [], callback);
+const getUsers = () => {
+  const stmt = db.prepare("SELECT * FROM users");
+  return stmt.all();
 };
 
 // Delete User
-const deleteUser = (id, callback) => {
-  db.run("DELETE FROM users WHERE id = ?", [id], callback);
+const deleteUser = (id) => {
+  const stmt = db.prepare("DELETE FROM users WHERE id = ?");
+  return stmt.run(id);
 };
 
 module.exports = {

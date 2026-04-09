@@ -1,40 +1,44 @@
 const userModel = require("../models/userModel");
 
 // Initialize table
-userModel.createTable();
+try {
+  userModel.createTable();
+} catch (error) {
+  console.error("❌ Failed to initialize database table:", error.message);
+}
 
 // Add User
 const createUser = (req, res) => {
   const { name, email } = req.body;
 
-  userModel.addUser(name, email, function (err) {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
+  try {
+    userModel.addUser(name, email);
     res.json({ message: "User added successfully" });
-  });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
 
 // Get Users
 const getAllUsers = (req, res) => {
-  userModel.getUsers((err, rows) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
+  try {
+    const rows = userModel.getUsers();
     res.json(rows);
-  });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
 
 // Delete User
 const removeUser = (req, res) => {
   const { id } = req.params;
 
-  userModel.deleteUser(id, function (err) {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
+  try {
+    userModel.deleteUser(id);
     res.json({ message: "User deleted successfully" });
-  });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
 
 module.exports = {
